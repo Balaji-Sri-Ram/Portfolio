@@ -15,6 +15,21 @@ const Skills = ({ theme }) => {
         ? "rgba(180, 140, 90, 0.4)"
         : "rgba(0, 255, 136, 0.4)";
 
+    const images = [
+        { src: "css3.svg", label: "CSS3" },
+        { src: "html-5.svg", label: "HTML5" },
+        { src: "js.svg", label: "JavaScript" },
+        { src: "react.svg", label: "React" },
+        { src: "php.svg", label: "PHP" },
+        { src: "tailwind-css.svg", label: "Tailwind CSS" },
+        { src: "java.svg", label: "Java" },
+        { src: "c.svg", label: "C" },
+        { src: "python.svg", label: "Python" },
+    ];
+
+    // Create duplicated array for infinite scroll effect
+    const duplicatedImages = [...images, ...images];
+
     return (
         <section id="skills" className="py-20 bg-[#f5f2eb] dark:bg-[#0f0f0f] transition-colors duration-300">
             <div className="container">
@@ -52,7 +67,34 @@ const Skills = ({ theme }) => {
                     ))}
                 </div>
             </div>
-        </section>
+
+            <div className="mt-10 w-full max-w-[1400px] h-[100px] overflow-hidden relative bg-transparent py-2 mx-auto">
+                <motion.div
+                    className="flex w-fit"
+                    animate={{ x: ["0%", "-50%"] }}
+                    transition={{
+                        repeat: Infinity,
+                        ease: "linear",
+                        duration: 20,
+                    }}
+                >
+                    {duplicatedImages.map((img, idx) => (
+                        <div
+                            key={idx}
+                            className="bg-cream/80 dark:bg-white/5 border border-brown/10 dark:border-white/5 backdrop-blur-sm group flex flex-col items-center justify-center w-[150px] h-[80px] mx-[10px] rounded-xl flex-shrink-0 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-brown dark:hover:border-neon-green cursor-pointer">
+                            <img
+                                src={img.src}
+                                alt={img.label}
+                                className={`w-[50px] h-[45px] object-cover rounded-xl transition-all duration-300 ${img.label === 'PHP' ? 'dark:brightness-0' : ''}`}
+                            />
+                            <p className="mt-2 text-sm font-medium text-charcoal dark:text-gray-300 transition-colors duration-300 group-hover:text-brown dark:group-hover:text-neon-green">
+                                {img.label}
+                            </p>
+                        </div>
+                    ))}
+                </motion.div>
+            </div>
+        </section >
     );
 };
 
