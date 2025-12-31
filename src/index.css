@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-main: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  @apply bg-cream text-charcoal dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* Custom Scrollbar for Dark/Light Mode */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream dark:bg-dark-bg;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-brown dark:bg-neon-green/50 rounded-full;
+  /* Note: primary-color variable usage might be inconsistent, using direct colors is safer with Tailwind utilities */
+  background-color: #4A3B32;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #00ff88;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-light-brown dark:bg-neon-green;
+}
+
+/* Cursor Follower Styles */
+.cursor-follower {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.25) 0%, rgba(0, 255, 136, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease;
+}
+
+body.cursor-hidden .cursor-follower {
+  opacity: 0;
+}
