@@ -6,13 +6,36 @@ import ThemeToggle from './ThemeToggle';
 const Navbar = ({ theme, toggleTheme }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '-20% 0px -35% 0px', // Adjusts when a section is considered "active"
+            threshold: 0.1
+        };
+
+        const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(observerCallback, observerOptions);
+        const sections = document.querySelectorAll('section[id]');
+        sections.forEach((section) => observer.observe(section));
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            sections.forEach((section) => observer.unobserve(section));
+        };
     }, []);
 
     const navLinks = [
@@ -33,16 +56,24 @@ const Navbar = ({ theme, toggleTheme }) => {
 
                 {/* Desktop Menu */}
                 <div className="hidden md:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <a
-                            key={link.name}
-                            href={link.href}
-                            className="text-sm font-medium hover:text-brown dark:text-gray-300 dark:hover:text-neon-green transition-colors relative group"
-                        >
-                            {link.name}
-                            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brown dark:bg-neon-green transition-all group-hover:w-full"></span>
-                        </a>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = activeSection === link.name.toLowerCase();
+                        return (
+                            <a
+                                key={link.name}
+                                href={link.href}
+                                className={`text-sm font-medium relative group transition-all duration-700 ease-out bg-gradient-to-r bg-[length:200%_100%] bg-clip-text 
+                                    ${isActive
+                                        ? 'from-brown to-brown dark:from-neon-green dark:to-neon-green bg-[0%_0%] text-transparent'
+                                        : 'from-brown to-charcoal dark:from-neon-green dark:to-gray-300 bg-[100%_0%] hover:text-brown dark:text-gray-300 dark:hover:text-neon-green'
+                                    }`}
+                                style={isActive ? { webkitTextFillColor: 'transparent' } : {}}
+                            >
+                                {link.name}
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brown dark:bg-neon-green transition-all group-hover:w-full"></span>
+                            </a>
+                        );
+                    })}
 
                     <div className="flex items-center gap-4">
                         <div className="w-[2px] h-6 bg-gray-300 dark:bg-gray-600"></div>
