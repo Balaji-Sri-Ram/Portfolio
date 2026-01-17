@@ -184,12 +184,11 @@ const Hero = ({ theme }) => {
                     >
                         {/* Orbital Border Glow - No Pulse, Fixed to Edge */}
                         <div
-                            className="absolute rounded-full pointer-events-none transition-opacity duration-150 ease-out"
+                            className="absolute rounded-full pointer-events-none transition-opacity duration-150 ease-out -inset-5 md:-inset-10 blur-xl md:blur-2xl"
                             style={{
-                                inset: '-15px', // Further reduced for mobile
+                                // inset & filter moved to className for responsiveness
                                 background: glowStyle.background,
                                 opacity: glowStyle.opacity,
-                                filter: 'blur(15px)', // Sharper blur for small scale
                                 zIndex: -1
                             }}
                         />
