@@ -102,98 +102,105 @@ const Hero = ({ theme }) => {
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        window.addEventListener('touchmove', handleMouseMove); // Add touch support
+        return () => {
+            window.removeEventListener('mousemove', handleMouseMove);
+            window.removeEventListener('touchmove', handleMouseMove);
+        };
     }, [theme]);
 
     return (
-        <section id="home" className="min-h-screen flex items-center pt-20 overflow-hidden relative">
-            <div className="container grid md:grid-cols-2 gap-12 items-center">
+        <section id="home" className="min-h-screen flex items-center pt-20 md:pt-20 overflow-hidden relative">
+            {/* FORCE Grid 12 Columns for granular control */}
+            <div className="container grid grid-cols-12 gap-2 md:gap-12 items-center">
 
+                {/* TEXT SECTION: 7 Columns on Mobile, 6 on Desktop */}
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="order-2 md:order-1 relative z-10 md:pl-16"
+                    className="relative z-10 pl-1 md:pl-16 col-span-7 md:col-span-6"
                 >
                     <motion.span
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-brown dark:text-neon-green font-medium tracking-wide"
+                        className="text-brown dark:text-neon-green font-medium tracking-wide text-[10px] md:text-base"
                     >
                         HELLO, I'M
                     </motion.span>
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-charcoal dark:text-white mt-4 mb-2 leading-tight">
+                    <h1 className="text-xl sm:text-3xl md:text-7xl font-extrabold text-charcoal dark:text-white mt-1 md:mt-4 mb-1 md:mb-2 leading-tight">
                         Parasa Balaji <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brown to-light-brown dark:from-neon-green dark:to-emerald-600">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-brown to-light-brown dark:from-neon-green dark:to-emerald-600 block md:inline">
                             Sri Ram
                         </span>
                     </h1>
 
-                    {/* Animated Typing Text */}
-                    <div className="text-2xl md:text-3xl font-bold text-gray-600 dark:text-gray-300 mb-6 h-10 flex items-center">
-                        <span className="mr-2">And I'm a</span>
+                    {/* Animated Typing Text - Smaller on Mobile to prevent wrapping */}
+                    <div className="text-xs sm:text-lg md:text-3xl font-bold text-gray-600 dark:text-gray-300 mb-3 md:mb-6 h-6 md:h-10 flex flex-wrap items-center">
                         <span className="text-brown dark:text-neon-green font-mono">
                             {typedText}
                         </span>
                     </div>
 
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg leading-relaxed">
+                    <p className="hidden md:block text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg leading-relaxed">
                         A passionate Computer Science Engineering student and developer. I build accessible, pixel-perfect, and performant web experiences.
                     </p>
 
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-4 mt-1 md:mt-8">
                         <motion.a
                             href="#contact"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="bg-charcoal dark:bg-neon-green text-white dark:text-black px-8 py-3 rounded-full flex items-center gap-2 font-medium hover:bg-brown dark:hover:bg-emerald-400 transition-colors shadow-lg"
+                            className="bg-charcoal dark:bg-neon-green text-white dark:text-black px-3 py-1.5 md:px-8 md:py-3 rounded-full flex items-center justify-center gap-2 font-medium text-[10px] md:text-base hover:bg-brown dark:hover:bg-emerald-400 transition-colors shadow-lg w-fit"
                         >
-                            <Mail size={18} />
-                            Contact Me
+                            <Mail size={12} className="md:w-[18px] md:h-[18px]" />
+                            <span className="hidden md:inline">Contact Me</span>
+                            <span className="md:hidden">Contact</span>
                         </motion.a>
                         <motion.a
                             href="/resume.pdf"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             download
-                            className="border-2 border-charcoal dark:border-neon-green text-charcoal dark:text-neon-green px-8 py-3 rounded-full flex items-center gap-2 font-medium hover:bg-charcoal hover:text-white dark:hover:bg-neon-green/10 transition-all"
+                            className="border-2 border-charcoal dark:border-neon-green text-charcoal dark:text-neon-green px-3 py-1.5 md:px-8 md:py-3 rounded-full flex items-center justify-center gap-2 font-medium text-[10px] md:text-base hover:bg-charcoal hover:text-white dark:hover:bg-neon-green/10 transition-all w-fit"
                         >
-                            <Download size={18} />
+                            <Download size={12} className="md:w-[18px] md:h-[18px]" />
                             Resume
                         </motion.a>
                     </div>
                 </motion.div>
 
+                {/* IMAGE SECTION: 5 Columns on Mobile, 6 on Desktop */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="order-1 md:order-2 flex justify-center relative p-[150px]"
+                    className="flex justify-center relative p-1 md:p-[150px] col-span-5 md:col-span-6"
                 >
                     <div
                         ref={imageContainerRef}
-                        className="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center transition-transform duration-500 ease-out hover:scale-105" /* Reduced scale */
+                        className="relative w-28 h-28 sm:w-48 sm:h-48 md:w-96 md:h-96 flex items-center justify-center transition-transform duration-500 ease-out hover:scale-105"
                     >
                         {/* Orbital Border Glow - No Pulse, Fixed to Edge */}
                         <div
-                            className="absolute rounded-full pointer-events-none transition-opacity duration-150 ease-out" /* Fast transition */
+                            className="absolute rounded-full pointer-events-none transition-opacity duration-150 ease-out"
                             style={{
-                                inset: '-40px', // Reduced glow size 
+                                inset: '-15px', // Further reduced for mobile
                                 background: glowStyle.background,
                                 opacity: glowStyle.opacity,
-                                filter: 'blur(35px)',
+                                filter: 'blur(15px)', // Sharper blur for small scale
                                 zIndex: -1
                             }}
                         />
 
                         {/* Static Subtle Glow Background (Base) */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brown/10 to-transparent dark:from-neon-green/5 dark:to-transparent blur-2xl -z-10"></div>
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brown/10 to-transparent dark:from-neon-green/5 dark:to-transparent blur-lg md:blur-2xl -z-10"></div>
 
                         <img
                             src={Img}
                             alt="Parasa Balaji Sri Ram"
-                            className="w-full h-full object-cover rounded-full border-4 border-white/50 dark:border-neon-green/30 shadow-2xl relative z-10"
+                            className="w-full h-full object-cover rounded-full border-2 md:border-4 border-white/50 dark:border-neon-green/30 shadow-lg md:shadow-2xl relative z-10"
                         />
                     </div>
                 </motion.div>
