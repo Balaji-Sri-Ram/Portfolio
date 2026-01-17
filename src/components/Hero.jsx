@@ -159,7 +159,7 @@ const Hero = ({ theme }) => {
                             <span className="md:hidden">Contact</span>
                         </motion.a>
                         <motion.a
-                            href="/resume.pdf"
+                            href="resume.pdf"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             download
