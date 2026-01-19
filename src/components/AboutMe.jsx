@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Lottie from 'lottie-react';
+import { Mail } from 'lucide-react';
 
 const AboutMe = () => {
     return (
@@ -54,8 +55,9 @@ const AboutMe = () => {
                             href="#contact"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="inline-block px-8 py-3 bg-brown dark:bg-neon-green text-white dark:text-black font-semibold rounded-lg shadow-md hover:bg-opacity-90 transition-all cursor-pointer"
+                            className="inline-flex items-center gap-2 px-8 py-3 bg-brown dark:bg-neon-green text-white dark:text-black font-semibold rounded-lg shadow-md hover:bg-opacity-90 transition-all cursor-pointer"
                         >
+                            <Mail size={20} />
                             Contact Me
                         </motion.a>
                     </div>

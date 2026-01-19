@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -22,7 +23,6 @@ body {
   padding: 0 40px;
 }
 
-/* Custom Scrollbar for Dark/Light Mode */
 ::-webkit-scrollbar {
   width: 8px;
 }
