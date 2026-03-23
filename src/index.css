@@ -11,10 +11,12 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: var(--font-main);
-  @apply bg-cream text-charcoal dark:bg-dark-bg dark:text-gray-100 transition-colors duration-300;
-  overflow-x: hidden;
+@layer base {
+  body {
+    font-family: var(--font-main);
+    @apply bg-l-bg text-l-text-primary dark:bg-dark-bg dark:text-gray-text transition-colors duration-300;
+    overflow-x: hidden;
+  }
 }
 
 .container {
@@ -23,26 +25,33 @@ body {
   padding: 0 40px;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-}
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-::-webkit-scrollbar-track {
-  @apply bg-cream dark:bg-dark-bg;
-}
+  ::-webkit-scrollbar-track {
+    @apply bg-l-bg dark:bg-dark-bg;
+  }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-brown dark:bg-neon-green/50 rounded-full;
-  /* Note: primary-color variable usage might be inconsistent, using direct colors is safer with Tailwind utilities */
-  background-color: #4A3B32;
-}
+  ::-webkit-scrollbar-thumb {
+    @apply bg-l-accent dark:bg-[#00F0FF]/50 rounded-full;
+    background-color: #0EA5E9;
+  }
 
-.dark ::-webkit-scrollbar-thumb {
-  background-color: #00ff88;
-}
+  .grid-pattern {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-light-brown dark:bg-neon-green;
+  .dark ::-webkit-scrollbar-thumb {
+    background-color: #00F0FF;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-l-accent-hover dark:bg-primary-cyan;
+  }
 }
 
 /* Cursor Follower Styles */
@@ -53,7 +62,7 @@ body {
   left: 0;
   width: 150px;
   height: 150px;
-  background: radial-gradient(circle, rgba(0, 255, 136, 0.25) 0%, rgba(0, 255, 136, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.25) 0%, rgba(0, 240, 255, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
   transform: translate(-50%, -50%);
   z-index: 9999;
   border-radius: 50%;
@@ -73,4 +82,23 @@ body.cursor-hidden .cursor-follower {
 
 ::view-transition-new(root) {
   z-index: 1;
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient-x {
+    animation: gradient-x 6s ease infinite;
+  }
 }

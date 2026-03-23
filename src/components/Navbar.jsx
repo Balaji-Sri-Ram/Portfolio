@@ -43,15 +43,17 @@ const Navbar = ({ theme, toggleTheme }) => {
         { name: 'About', href: '#about' },
         { name: 'Skills', href: '#skills' },
         { name: 'Projects', href: '#projects' },
-        { name: 'Experience', href: '#experience' },
+        { name: 'Education', href: '#experience' },
+        { name: 'Certifications', href: '#certifications' },
+        { name: 'Achievements', href: '#achievements' },
         { name: 'Contact', href: '#contact' },
     ];
 
     return (
-        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-cream/90 dark:bg-dark-bg/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+        <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-l-card/90 dark:bg-dark-bg/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
             <div className="container flex justify-between items-center">
-                <a href="#home" className="text-2xl font-bold tracking-tighter text-brown dark:text-white transition-colors">
-                    PBSR<span className="text-beige dark:text-neon-green">.</span>
+                <a href="#home" className="text-2xl font-bold tracking-tighter text-l-text-primary dark:text-gray-100 transition-colors">
+                    PBSR<span className="text-l-accent dark:text-primary-cyan">.</span>
                 </a>
 
                 {/* Desktop Menu */}
@@ -64,13 +66,13 @@ const Navbar = ({ theme, toggleTheme }) => {
                                 href={link.href}
                                 className={`text-sm font-medium relative group transition-all duration-700 ease-out bg-gradient-to-r bg-[length:200%_100%] bg-clip-text 
                                     ${isActive
-                                        ? 'from-brown to-brown dark:from-neon-green dark:to-neon-green bg-[0%_0%] text-transparent'
-                                        : 'from-brown to-charcoal dark:from-neon-green dark:to-gray-300 bg-[100%_0%] hover:text-brown dark:text-gray-300 dark:hover:text-neon-green'
+                                        ? 'from-l-accent to-l-accent dark:from-primary-cyan dark:to-primary-cyan bg-[0%_0%] text-transparent'
+                                        : 'from-l-accent to-l-text-primary dark:from-primary-cyan dark:to-gray-300 bg-[100%_0%] hover:text-l-accent dark:text-gray-text dark:hover:text-primary-cyan'
                                     }`}
                                 style={isActive ? { webkitTextFillColor: 'transparent' } : {}}
                             >
                                 {link.name}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brown dark:bg-neon-green transition-all group-hover:w-full"></span>
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-l-accent dark:bg-primary-cyan transition-all group-hover:w-full"></span>
                             </a>
                         );
                     })}
@@ -84,7 +86,7 @@ const Navbar = ({ theme, toggleTheme }) => {
                 {/* Mobile Menu Button */}
                 <div className="flex items-center gap-4 md:hidden">
                     <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-                    <button onClick={() => setIsOpen(!isOpen)} className="dark:text-white">
+                    <button onClick={() => setIsOpen(!isOpen)} className="dark:text-gray-100">
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
                 </div>
@@ -97,14 +99,14 @@ const Navbar = ({ theme, toggleTheme }) => {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-full left-0 w-full bg-cream dark:bg-card-dark shadow-lg md:hidden flex flex-col items-center py-8 gap-6 transition-colors"
+                        className="absolute top-full left-0 w-full bg-l-card dark:bg-card-dark shadow-lg md:hidden flex flex-col items-center py-8 gap-6 transition-colors"
                     >
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="text-lg font-medium hover:text-brown dark:text-gray-300 dark:hover:text-neon-green"
+                                className="text-lg font-medium hover:text-l-accent dark:text-gray-text dark:hover:text-primary-cyan"
                             >
                                 {link.name}
                             </a>

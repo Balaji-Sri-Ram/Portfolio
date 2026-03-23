@@ -1,157 +1,167 @@
-import React, { useRef } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import {
-    motion,
-    useScroll,
-    useSpring,
-    useTransform,
-    useMotionValue,
-    useVelocity,
-    useAnimationFrame
-} from 'framer-motion';
-import SpotlightCard from './SpotlightCard';
-import TiltCard from './TiltCard';
+    Code2,
+    Terminal,
+    Cpu,
+    Globe,
+    Database,
+    Layers,
+    GitBranch,
+    Github,
+    Server,
+    Zap,
+    Blocks,
+    Triangle,
+    Cloud,
+    Send
+} from 'lucide-react';
 
-const skillsData = [
-    { category: "Languages", items: ["Python", "C", "C++", "Java", "JavaScript"] },
-    { category: "Frameworks & Libs", items: ["React.js", "Node.js", "Express", "Flask", "Tailwind CSS", "HTML/CSS"] },
-    { category: "Tools & DB", items: ["MySQL", "MongoDB", "Git", "GitHub", "VS Code"] },
-    { category: "Soft Skills", items: ["Communication", "Problem-Solving", "Consistency", "Adaptability"] }
+const JavaIcon = ({ size = 32 }) => (
+    <svg
+        viewBox="0 0 24 24"
+        width={size}
+        height={size}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="transform group-hover:scale-110 transition-transform duration-300"
+    >
+        {/* Steam */}
+        <path d="M10 2c.5 1-1 2 0 4M13 1c.5 1-1 2 0 4M7 2c.5 1-1 2 0 4" />
+        {/* Cup Bands */}
+        <path d="M6 10c4 1.5 8 1.5 12 0" />
+        <path d="M5 13c5 2 10 2 14 0" />
+        <path d="M4 16c6 2.5 12 2.5 16 0" />
+        {/* Handle */}
+        <path d="M18 12c1.5 0 2.5 1 2.5 2s-1 2-2.5 2" />
+        {/* Saucer */}
+        <path d="M3 20c6 2 12 2 18 0" />
+    </svg>
+);
+
+const skillsGrouping = [
+    {
+        category: "Languages",
+        skills: [
+            { name: "Python", Icon: Terminal },
+            { name: "JavaScript", Icon: Code2 },
+            { name: "C++", Icon: Cpu },
+            { name: "Java", Icon: JavaIcon },
+            { name: "C", Icon: Cpu },
+            { name: "HTML/CSS", Icon: Globe }
+        ]
+    },
+    {
+        category: "Frameworks & Libs",
+        skills: [
+            { name: "React.js", Icon: Layers },
+            { name: "Node.js", Icon: Server },
+            { name: "Express.js", Icon: Blocks },
+            { name: "Flask", Icon: Terminal },
+            { name: "Tailwind CSS", Icon: Zap }
+        ]
+    },
+    {
+        category: "Platforms & Tools",
+        skills: [
+            { name: "MongoDB", Icon: Database },
+            { name: "Git", Icon: GitBranch },
+            { name: "GitHub", Icon: Github },
+            { name: "MySQL", Icon: Database },
+            { name: "Vercel", Icon: Triangle },
+            { name: "Render", Icon: Cloud },
+            { name: "Postman", Icon: Send }
+        ]
+    }
 ];
 
-// Utility function for wrapping logic
-const wrap = (min, max, v) => {
-    const rangeSize = max - min;
-    return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
-
-const ParallaxText = ({ children, baseVelocity = 100 }) => {
-    const baseX = useMotionValue(0);
-    const { scrollY } = useScroll();
-    const scrollVelocity = useVelocity(scrollY);
-    const smoothVelocity = useSpring(scrollVelocity, {
-        damping: 50,
-        stiffness: 400
-    });
-    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-        clamp: false
-    });
-
-    // Wrap x between -50% and 0%
-    // We wrap between -50 and 0 because the children are duplicated to create 2 visual sets, 
-    // and we duplicate that again here to ensure seamless looping for a total of 4 sets.
-    const x = useTransform(baseX, (v) => `${wrap(-50, 0, v)}%`);
-
-    const directionFactor = useRef(1);
-
-    useAnimationFrame((t, delta) => {
-        let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-
-        /**
-         * Change direction based on scroll velocity polarity
-         */
-        if (velocityFactor.get() < 0) {
-            directionFactor.current = -1;
-        } else if (velocityFactor.get() > 0) {
-            directionFactor.current = 1;
-        }
-
-        moveBy += directionFactor.current * moveBy * velocityFactor.get();
-
-        baseX.set(baseX.get() + moveBy);
-    });
-
-    /**
-     * We render children twice here to create the seamless loop effect.
-     * If the incoming children are already a list of items, this creates two blocks of those items.
-     */
+const VisualSkillCard = ({ name, Icon, theme }) => {
     return (
-        <motion.div className="flex w-fit" style={{ x }}>
-            {children}
-            {children}
+        <motion.div
+            whileHover={{
+                scale: 1.05,
+                boxShadow: theme === 'dark' ? "0 0 25px rgba(0, 255, 255, 0.15)" : "0 0 25px rgba(139, 115, 85, 0.15)",
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="w-full h-32 bg-white/50 dark:bg-[#111] border border-brown/10 dark:border-white/5 rounded-2xl flex flex-col items-center justify-center gap-3 cursor-default group hover:border-brown dark:hover:border-[#00ffff]/30 backdrop-blur-md transition-all duration-300"
+        >
+            <div className="text-brown/40 dark:text-[#e5e5e5]/40 group-hover:text-brown dark:group-hover:text-[#00ffff] transition-colors duration-300 transform group-hover:scale-110">
+                <Icon size={32} strokeWidth={1.5} />
+            </div>
+            <span className="text-charcoal dark:text-[#e5e5e5] text-sm font-medium tracking-wide group-hover:text-brown dark:group-hover:text-[#00ffff] transition-colors duration-300">
+                {name}
+            </span>
         </motion.div>
     );
-}
+};
+
+const SkillCategory = ({ category, skills, theme }) => (
+    <div className="mb-20 last:mb-0 w-full max-w-6xl">
+        <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex items-center gap-6 mb-10"
+        >
+            <h3 className="text-brown dark:text-[#00ffff] text-xs font-mono uppercase tracking-[0.5em] whitespace-nowrap">
+                {category}
+            </h3>
+            <div className="h-[1px] w-full bg-gradient-to-r from-brown/20 dark:from-[#00ffff]/20 via-brown/5 dark:via-[#00ffff]/5 to-transparent" />
+        </motion.div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
+            {skills.map((skill, index) => (
+                <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.05 }}
+                >
+                    <VisualSkillCard {...skill} theme={theme} />
+                </motion.div>
+            ))}
+        </div>
+    </div>
+);
 
 const Skills = ({ theme }) => {
-    const spotlightColor = theme === 'light'
-        ? "rgba(180, 140, 90, 0.4)"
-        : "rgba(0, 255, 136, 0.4)";
-
-    const images = [
-        { src: "css3.svg", label: "CSS3" },
-        { src: "html-5.svg", label: "HTML5" },
-        { src: "js.svg", label: "JavaScript" },
-        { src: "react.svg", label: "React" },
-        { src: "php.svg", label: "PHP" },
-        { src: "tailwind-css.svg", label: "Tailwind CSS" },
-        { src: "java.svg", label: "Java" },
-        { src: "c.svg", label: "C" },
-        { src: "python.svg", label: "Python" },
-    ];
-
-    // Create duplicated array for infinite scroll effect (2 sets)
-    const duplicatedImages = [...images, ...images];
-
     return (
-        <section id="skills" className="py-20 bg-[#f5f2eb] dark:bg-[#0f0f0f] transition-colors duration-300">
-            <div className="container">
-                <motion.h2
+        <section id="skills" className="min-h-screen w-full bg-l-bg dark:bg-[#0a0a0a] py-32 relative overflow-hidden flex flex-col items-center transition-colors duration-500">
+            {/* Ambient Background Grid */}
+            <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.02] pointer-events-none"
+                style={{ backgroundImage: theme === 'dark' ? 'radial-gradient(#fff 1px, transparent 0)' : 'radial-gradient(#000 1px, transparent 0)', backgroundSize: '60px 60px' }}>
+            </div>
+
+            <div className="container mx-auto px-6 relative z-10 flex flex-col items-center">
+                {/* Header Section */}
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-4xl font-bold mb-16 text-center text-charcoal dark:text-white"
+                    transition={{ duration: 0.8 }}
+                    className="text-center mb-24"
                 >
-                    My Skills
-                </motion.h2>
+                    <h2 className="text-5xl md:text-7xl font-black text-[#1a1a1a] dark:text-[#e5e5e5] tracking-tighter uppercase mb-6 leading-none">
+                        Tech Stack
+                    </h2>
+                    <div className="w-16 h-[2px] bg-brown dark:bg-[#00ffff]/30 mx-auto mb-6" />
+                    <p className="text-[#1a1a1a]/40 dark:text-[#e5e5e5]/30 text-[10px] whitespace-pre uppercase tracking-[0.5em] font-mono">
+                        Consistency &bull; Scalability &bull; Efficiency
+                    </p>
+                </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {skillsData.map((group, index) => (
-                        <TiltCard key={group.category} className="h-full">
-                            <SpotlightCard
-                                spotlightColor={spotlightColor}
-                                className="h-full p-6 rounded-2xl bg-cream dark:bg-card-dark border border-beige/30 dark:border-white/5 transition-all group"
-                            >
-                                <h3 className="text-xl font-semibold mb-6 text-brown dark:text-neon-green border-b border-beige dark:border-gray-800 pb-2 inline-block">
-                                    {group.category}
-                                </h3>
-                                <div className="flex flex-wrap gap-3">
-                                    {group.items.map((skill) => (
-                                        <span
-                                            key={skill}
-                                            className="bg-beige/20 dark:bg-white/5 text-charcoal dark:text-gray-300 text-sm px-3 py-1 rounded-md font-medium group-hover:text-brown dark:group-hover:text-neon-green transition-colors"
-                                        >
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </SpotlightCard>
-                        </TiltCard>
-                    ))}
-                </div>
+                {/* Categorized Grids */}
+                {skillsGrouping.map((group) => (
+                    <SkillCategory key={group.category} {...group} theme={theme} />
+                ))}
             </div>
 
-            <div className="mt-10 w-full max-w-[1400px] h-[100px] overflow-hidden relative bg-transparent py-2 mx-auto">
-                <div className="absolute top-0 left-0 w-20 h-full z-10 bg-gradient-to-r from-[#f5f2eb] dark:from-[#0f0f0f] to-transparent pointer-events-none" />
-                <div className="absolute top-0 right-0 w-20 h-full z-10 bg-gradient-to-l from-[#f5f2eb] dark:from-[#0f0f0f] to-transparent pointer-events-none" />
-
-                <ParallaxText baseVelocity={1}>
-                    {duplicatedImages.map((img, idx) => (
-                        <div
-                            key={idx}
-                            className="bg-cream/80 dark:bg-white/5 border border-brown/10 dark:border-white/5 backdrop-blur-sm group flex flex-col items-center justify-center w-[150px] h-[80px] mx-[10px] rounded-xl flex-shrink-0 shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-brown dark:hover:border-neon-green cursor-pointer">
-                            <img
-                                src={img.src}
-                                alt={img.label}
-                                className={`w-[50px] h-[45px] object-cover rounded-xl transition-all duration-300 ${img.label === 'PHP' ? 'dark:brightness-0' : ''}`}
-                            />
-                            <p className="mt-2 text-sm font-medium text-charcoal dark:text-gray-300 transition-colors duration-300 group-hover:text-brown dark:group-hover:text-neon-green">
-                                {img.label}
-                            </p>
-                        </div>
-                    ))}
-                </ParallaxText>
-            </div>
-        </section >
+            {/* Background Decorative Element */}
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brown/5 dark:bg-[#00ffff]/2 rounded-full blur-[120px] -z-0 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brown/5 dark:bg-[#00ffff]/2 rounded-full blur-[120px] -z-0 pointer-events-none" />
+        </section>
     );
 };
 

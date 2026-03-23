@@ -8,15 +8,18 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Light Mode (Beach/Earthy)
-                'cream': '#FDFBF7',
-                'charcoal': '#1A1A1A',
-                'beige': '#D4C4B7',
-                'brown': '#4A3B32',
-                'light-brown': '#8C7B70',
+                // Light Mode (White/Black/Coffee/Brown)
+                'l-bg': '#FFFFFF',
+                'l-card': '#F9F6F2',
+                'l-text-primary': '#000000',
+                'l-text-secondary': '#2C1B0E', // Dark Coffee
+                'l-accent': '#6F4E37',        // Coffee Brown
+                'l-accent-hover': '#4E342E',
+                'l-border': '#D2B48C',        // Light Brown
+                'brown': '#6F4E37',           // Alias for compatibility
 
-                // Dark Mode (Neon/Black)
-                'neon-green': '#00ff88',
+                // Dark Mode (Neon Blue)
+                'primary-cyan': '#00F0FF',
                 'dark-bg': '#0a0a0a',
                 'card-dark': '#171717',
                 'gray-text': '#a3a3a3',
@@ -43,8 +46,8 @@ export default {
                     },
                 },
                 'blink-green': {
-                    '0%, 100%': { opacity: '0.2', color: '#00cc6a' },
-                    '50%': { opacity: '1', color: '#00cc6a' }
+                    '0%, 100%': { opacity: '0.2', color: '#00F0FF' },
+                    '50%': { opacity: '1', color: '#00F0FF' }
                 },
                 'blink': {
                     '0%, 100%': { opacity: '0.2' },

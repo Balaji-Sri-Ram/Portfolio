@@ -5,7 +5,7 @@ import { Mail } from 'lucide-react';
 
 const AboutMe = () => {
     return (
-        <section id="about" className="min-h-screen flex items-center justify-center py-20 bg-cream dark:bg-dark-bg transition-colors duration-300 overflow-hidden">
+        <section id="about" className="min-h-screen flex items-center justify-center py-20 bg-l-bg dark:bg-dark-bg transition-colors duration-300 overflow-hidden">
             <div className="container mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-16 md:gap-24 items-center">
 
                 {/* Animation Section - Slides in from Left */}
@@ -17,13 +17,6 @@ const AboutMe = () => {
                     className="flex justify-center md:justify-end relative"
                 >
                     <div className="relative w-full max-w-md">
-                        {/* Decorative background glow */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-brown/20 to-transparent dark:from-neon-green/10 dark:to-transparent rounded-full blur-3xl -z-10"></div>
-
-                        {/* 
-                            NOTE: lottie-react requires the JSON object. 
-                            I'll use a public Lottie URL and fetch it.
-                         */}
                         <CodingAnimation />
                     </div>
                 </motion.div>
@@ -36,29 +29,31 @@ const AboutMe = () => {
                     viewport={{ amount: 0.3 }}
                     className="text-left"
                 >
-                    <h2 className="text-4xl md:text-5xl font-bold text-charcoal dark:text-white mb-6 relative inline-block">
-                        About <span className="text-brown dark:text-neon-green">Me</span>
-                        <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-brown dark:bg-neon-green rounded-full"></span>
+                    <h2 className="text-4xl md:text-5xl font-bold text-l-text-primary dark:text-gray-100 mb-6 relative inline-block">
+                        About <span className="text-l-accent dark:text-primary-cyan">Me</span>
+                        <span className="absolute -bottom-2 left-0 w-1/2 h-1 bg-l-accent dark:bg-primary-cyan rounded-full"></span>
                     </h2>
 
-                    <div className="space-y-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <div className="space-y-4 text-lg text-l-text-secondary/90 dark:text-gray-text leading-relaxed">
                         <p>
-                            I’m <span className="font-semibold text-brown dark:text-neon-green">Balaji Sri Ram Parasa</span>, a 3rd-year Computer Science Engineering student and aspiring Full-Stack Developer from Lovely Professional University. I build strong programming fundamentals through hands-on projects and certifications, and I’m passionate about creating efficient, user-friendly software.
+                            I’m <span className="font-semibold text-l-accent dark:text-primary-cyan">Balaji Sri Ram Parasa</span>, a third-year Computer Science Engineering student at Lovely Professional University and an aspiring Full-Stack Developer. I am dedicated to building strong programming fundamentals through hands-on projects and industry-relevant certifications.
                         </p>
                         <p>
-                            I’m a quick learner with strong problem-solving skills, clear communication, and a collaborative mindset, always eager to learn new technologies and contribute to impactful projects.
+                            I am passionate about developing efficient, scalable, and user-friendly software solutions. With a quick learning ability, strong problem-solving skills, and clear communication, I thrive in collaborative environments and continuously seek opportunities to learn new technologies and contribute to impactful projects.
                         </p>
                     </div>
 
                     <div className="mt-8">
                         <motion.a
-                            href="#contact"
+                            href="https://leetcode.com/u/ramu_parasa/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="inline-flex items-center gap-2 px-8 py-3 bg-brown dark:bg-neon-green text-white dark:text-black font-semibold rounded-lg shadow-md hover:bg-opacity-90 transition-all cursor-pointer"
+                            className="inline-flex items-center gap-3 px-8 py-3 bg-l-accent dark:bg-primary-cyan text-white dark:text-black font-semibold rounded-lg shadow-md hover:bg-l-accent-hover hover:-translate-y-0.5 transition-all cursor-pointer"
                         >
-                            <Mail size={20} />
-                            Contact Me
+                            <span className="text-xl font-bold">{"{ }"}</span>
+                            View Coding Profile
                         </motion.a>
                     </div>
                 </motion.div>
@@ -79,7 +74,7 @@ const CodingAnimation = () => {
             .catch(err => console.error("Lottie Load Error:", err));
     }, []);
 
-    if (!animationData) return <div className="h-64 flex items-center justify-center text-brown dark:text-neon-green">Loading Animation...</div>;
+    if (!animationData) return <div className="h-64 flex items-center justify-center text-l-accent dark:text-primary-cyan">Loading Animation...</div>;
 
     return <Lottie animationData={animationData} loop={true} />;
 };

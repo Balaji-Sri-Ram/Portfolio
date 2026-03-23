@@ -24,7 +24,7 @@ const CursorFollower = ({ theme }) => {
 
     const isLight = theme === 'light';
     const gradient = isLight
-        ? "radial-gradient(circle, rgba(180, 140, 90, 0.6) 0%, rgba(180, 140, 90, 0.3) 40%, rgba(0, 0, 0, 0) 70%)"
+        ? "radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, rgba(14, 165, 233, 0.15) 40%, rgba(0, 0, 0, 0) 70%)"
         : "radial-gradient(circle, rgba(0, 255, 136, 0.25) 0%, rgba(0, 255, 136, 0.1) 40%, rgba(0, 0, 0, 0) 70%)";
 
     // Light mode needs 'normal' or 'multiply' to show the dark color against light bg. 'screen' washes it out.

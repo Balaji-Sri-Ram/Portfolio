@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import NotFound from './components/NotFound';
+import IntroAnimation from './components/IntroAnimation';
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -20,7 +22,8 @@ function App() {
 
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <div className={`min-h-screen text-charcoal dark:text-gray-100 transition-colors duration-300 ${theme === 'dark' ? 'bg-dark-bg' : 'bg-cream'}`}>
+      <div className={`min-h-screen text-l-text-primary dark:text-gray-100 transition-colors duration-300 ${theme === 'dark' ? 'bg-dark-bg' : 'bg-l-bg'}`}>
+        {showIntro && <IntroAnimation theme={theme} onComplete={() => setShowIntro(false)} />}
         <Routes>
           <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
           <Route path="*" element={<NotFound theme={theme} />} />
