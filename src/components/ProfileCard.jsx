@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Instagram } from 'lucide-react';
 import { LeetCode } from './LeetCode';
-import myPic from '../assets/profile1.jpeg';
+import myPic from '../assets/profile2.png';
 
 const ProfileCard = () => {
     return (

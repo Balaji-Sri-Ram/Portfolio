@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Download, Github, Linkedin } from 'lucide-react';
 import { SocialLink } from './ProfileCard';
-import myPic from '../assets/profile1.jpeg';
+import myPic from '../assets/profile2.png';
 import { LeetCode } from './LeetCode';
 
 const Typewriter = ({ words, loop, cursor, cursorStyle, typeSpeed, deleteSpeed, delaySpeed }) => {
@@ -130,7 +130,7 @@ const Hero = ({ theme }) => {
                 <motion.div 
                     animate={{ y: [0, -20, 0] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="lg:col-span-4 flex flex-col items-center justify-center order-1 lg:order-2 gap-8"
+                    className="lg:col-span-4 flex flex-col items-center justify-center order-1 lg:order-2 gap-8 group"
                 >
                     {/* Circular Profile Image (Individual animation removed, inherited from parent) */}
                     <motion.div
@@ -139,8 +139,12 @@ const Hero = ({ theme }) => {
                         transition={{ duration: 1, delay: 0.3 }}
                         className="relative w-80 h-80 md:w-96 md:h-96 rounded-full p-1 bg-gradient-to-tr from-l-accent/50 to-transparent dark:from-primary-cyan/50 shadow-[0_0_50px_rgba(0,0,0,0.1)] dark:shadow-[0_0_50px_rgba(0,0,0,0.3)]"
                     >
-                        <div className="w-full h-full rounded-full overflow-hidden border-4 border-white/50 dark:border-white/10">
-                            <img src={myPic} alt="Profile" className="w-full h-full object-cover object-top" />
+                        <div className="w-full h-full rounded-full overflow-hidden border-4 border-white/50 dark:border-white/10 bg-white dark:bg-neutral-900">
+                            <img 
+                                src={myPic} 
+                                alt="Profile" 
+                                className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" 
+                            />
                         </div>
                     </motion.div>
 
