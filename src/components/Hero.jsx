@@ -115,7 +115,7 @@ const Hero = ({ theme }) => {
                             Get in Touch
                         </a>
                         <a
-                            href="/resume.pdf"
+                            href={`${import.meta.env.BASE_URL}resume.pdf`}
                             target="_blank"
                             download="Parasa_Balaji_Sri_Ram_Resume.pdf"
                             className="group flex items-center gap-2 px-6 py-3 rounded-xl bg-transparent border-2 border-l-text-primary/10 dark:border-white/10 text-l-text-primary dark:text-white font-bold text-xs tracking-widest uppercase transition-all duration-300 hover:bg-l-text-primary/5 dark:hover:bg-white/5"
