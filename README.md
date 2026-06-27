@@ -1,6 +1,6 @@
-# FUTURE_FS_01 - Personal Portfolio Website
+## Personal Portfolio Website
 
-This is a personal portfolio website built with React and Vite.
+This is a personal portfolio website built with React and Vite. Which showcasing my skills and projects.
 
 ## Tech Stack
 - React
