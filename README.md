@@ -8,12 +8,6 @@ I'm a passionate software developer with strong expertise in full-stack web deve
 
 I'm continuously improving my problem-solving and algorithmic thinking through consistent Data Structures and Algorithms practice, certifications, hackathons, and research initiatives. I'm known for adaptability, effective communication, and a growth-oriented mindset, with a strong interest in building innovative products that enhance user experience, efficiency, and accessibility.
 
-## Tech Stack
 
-- React
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Three.js / React Three Fiber
 
 Website URL - https://balaji-sri-ram.github.io/Portfolio
