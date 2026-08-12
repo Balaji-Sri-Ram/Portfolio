@@ -8,7 +8,7 @@ const educationData = [
         title: "B.Tech in Computer Science & Engineering",
         institution: "Lovely Professional University, Punjab",
         duration: "2023 - Present",
-        description: "CGPA : 8.29",
+        description: "CGPA : 8.40",
         icon: <GraduationCap size={18} />
     },
     {

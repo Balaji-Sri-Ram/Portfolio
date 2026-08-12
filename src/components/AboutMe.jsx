@@ -36,7 +36,7 @@ const AboutMe = () => {
 
                     <div className="space-y-4 text-lg text-l-text-secondary/90 dark:text-gray-text leading-relaxed">
                         <p>
-                            I’m <span className="font-semibold text-l-accent dark:text-primary-cyan">Balaji Sri Ram Parasa</span>, a third-year Computer Science Engineering student at Lovely Professional University and an aspiring Full-Stack Developer. I am dedicated to building strong programming fundamentals through hands-on projects and industry-relevant certifications.
+                            I’m <span className="font-semibold text-l-accent dark:text-primary-cyan">Balaji Sri Ram Parasa</span>, a final-year Computer Science Engineering student at Lovely Professional University and an aspiring Full-Stack Developer. I am dedicated to building strong programming fundamentals through hands-on projects and industry-relevant certifications.
                         </p>
                         <p>
                             I am passionate about developing efficient, scalable, and user-friendly software solutions. With a quick learning ability, strong problem-solving skills, and clear communication, I thrive in collaborative environments and continuously seek opportunities to learn new technologies and contribute to impactful projects.
