@@ -14,7 +14,7 @@ I'm continuously improving my problem-solving and algorithmic thinking through c
 - **Competitions & Hackathons**: 
   - Ranked among the **Top 3 teams** in an NLP Workshop for developing an innovative Text-to-Speech system.
   - Secured a **Top 10 position** among 50+ teams in **HackWithVertos 1.0**, a 24-hour hackathon recognized for innovative problem-solving.
-- **Problem Solving**: Solved **580+ Data Structures & Algorithms** problems across platforms like LeetCode, GeeksforGeeks, and HackerRank.
+- **Problem Solving**: Solved **600+ Data Structures & Algorithms** problems across platforms like LeetCode, GeeksforGeeks, and HackerRank.
 
 ## Tech Stack
 
