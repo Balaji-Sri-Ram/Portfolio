@@ -16,13 +16,7 @@ I'm continuously improving my problem-solving and algorithmic thinking through c
   - Secured a **Top 10 position** among 50+ teams in **HackWithVertos 1.0**, a 24-hour hackathon recognized for innovative problem-solving.
 - **Problem Solving**: Solved **600+ Data Structures & Algorithms** problems across platforms like LeetCode, GeeksforGeeks, and HackerRank.
 
-## Tech Stack
 
-- React
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Three.js / React Three Fiber
 
 ## Live Demo
 
