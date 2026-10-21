@@ -17,6 +17,16 @@ I'm continuously improving my problem-solving and algorithmic thinking through c
 - **Problem Solving**: Solved **600+ Data Structures & Algorithms** problems across platforms like LeetCode, GeeksforGeeks, and HackerRank.
 
 
+## 🛠️ Technical Skills
+
+- **Programming Languages:** Java, Python, JavaScript, C, C++, SQL
+- **Frontend Development:** React.js, HTML5, CSS3, Tailwind CSS, Vite
+- **Backend Development:** Node.js, Express.js, Laravel, FastAPI, REST APIs
+- **Databases:** MongoDB, MongoDB Atlas, MySQL, PostgreSQL
+- **AI & Machine Learning:** Generative AI, Google Gemini API, LLMs, Natural Language Processing (NLP)
+- **Tools & Platforms:** VS Code, Postman, Git, GitHub, Vercel, Render
+- **Core CS Concepts:** Data Structures & Algorithms (DSA), Object-Oriented Programming (OOP), DBMS, Operating Systems, Computer Networks
+
 
 ## Live Demo
 
